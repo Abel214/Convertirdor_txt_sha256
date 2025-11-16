@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shap.css') }}">
+    <title>Programas Principales</title>
+</head>
+<body>
+     <header>
+        <a href="{{ url_for('index') }}" class="logo">Programas Madrecita</a>
+
+        <nav>
+            <a href="{{ url_for('index') }}" class="active">Inicio</a>
+            <a href="{{ url_for('sha256_converter') }}">Convertir sha256</a>
+            <a href="#">Acerca De</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>🔐 Convertidor TXT a SHA256</h1>
+        <p class="subtitle">Selecciona un archivo de texto para generar su hash SHA256</p>
+
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <p><strong>Click para seleccionar</strong> o arrastra un archivo aquí</p>
+            <p style="font-size: 12px; color: #999; margin-top: 10px;">Solo archivos .txt</p>
+            <input type="file" id="fileInput" accept=".txt">
+        </div>
+
+        <div class="file-info" id="fileInfo">
+            <strong>📄 Archivo seleccionado:</strong>
+            <p id="fileName"></p>
+        </div>
+
+        <div class="loader" id="loader"></div>
+
+        <div class="hash-result" id="hashResult">
+            <div class="hash-title">Hash SHA256:</div>
+            <div class="hash-value" id="hashValue"></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-converter" id="copyBtn">
+                    📋 Copiar al portapapeles
+                </button>
+                <button class="btn-converter" id="downloadBtn" style="background: #10b981;">
+                    💾 Descargar .sha256
+                </button>
+            </div>
+            <div class="success-message" id="successMessage">✓ Copiado al portapapeles</div>
+        </div>
+        
+        <!-- Botón para volver al inicio -->
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="{{ url_for('index') }}" class="btn" style="background: #6c757d;">
+                ← Volver al inicio
+            </a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Programas Principales</title>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('index') }}" class="logo">Programas Madrecita</a>
+
+        <nav>
+            <a href="{{ url_for('index') }}" class="active">Inicio</a>
+            <a href="{{ url_for('sha256_converter') }}">Convertir sha256</a>
+            <a href="#">Acerca De</a>
+        </nav>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="{{ url_for('static', filename='resources/Perro_Guaton.jpg') }}" alt="">
+        </div>
+        <div class="home-content">
+            <h3>Hola, Bienvenidos al <span>Convertidor</span></h3>
+            <h3 class="typing-text" id="dynamic-word">Encontrarás </h3>
+            <p>Bienvenido al programa, en un futuro existirán mas herramientas </p>
+            <p>Enlaces del creador y redes sociales</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+           
+        </div>
+    </section>
+    <script>
+        const words = ["convertidor de .txt a sha256"];
+        let i = 0;
+        const h3 = document.getElementById("dynamic-word");
+        function showWord() {
+            h3.textContent = `Encontrarás ${words[i]}`;
+            i = (i + 1) % words.length;
+        }
+        showWord();
+        setInterval(showWord, 1500);
+
+        // Transición suave al hacer clic en "Comenzemos"
+        document.getElementById('start-btn').addEventListener('click', function(event) {
+            event.preventDefault();
+            h3.textContent = '¡Suerte en el convertidor!';
+            document.body.style.transition = 'opacity 0.8s';
+            document.body.style.opacity = '0';
+            setTimeout(function() {
+                window.location.href = "{{ url_for('sha256_converter') }}";
+            }, 800);
+        });
+    </script>
+</body>
+</html>
